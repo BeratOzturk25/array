@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"></link>
+    <title>Steen, Papier, Schaar</title>
+</head>
+<body>
+
+<div class="box">
+    <h1>Steen, Papier, Schaar</h1>
+    <h1>Computer koos: <span id="computer"></span></h1>
+    <h1>Jij koos: <span id="human"></span></h1>
+    <h1>Resultaat: <span id="result"></span></h1>
+</div>
+    <button onclick="playGame('steen')">Steen</button>
+    <button onclick="playGame('papier')">Papier</button>
+    <button onclick="playGame('schaar')">Schaar</button>
+
+
+    <script>
+        // Variabelen voor de span-elementen
+        const computerOutput = document.querySelector("#computer");
+        const humanOutput = document.querySelector("#human");
+        const resultOutput = document.querySelector("#result");
+
+        function playGame(playerChoice) {
+            const choices = ['steen', 'papier', 'schaar'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            // Tekst in de span-elementen vervangen met innerHTML
+            humanOutput.innerHTML = playerChoice;
+            computerOutput.innerHTML = computerChoice;
+
+            if (playerChoice === computerChoice) {
+                resultOutput.innerHTML = "Gelijkspel!";
+            } else if (
+                (playerChoice === 'steen' && computerChoice === 'schaar') ||
+                (playerChoice === 'papier' && computerChoice === 'steen') ||
+                (playerChoice === 'schaar' && computerChoice === 'papier')
+            ) {
+                resultOutput.innerHTML = "Jij wint!";
+            } else {
+                resultOutput.innerHTML = "Computer wint!";
+            }
+        }
+    </script>
+</body>
+</html>
